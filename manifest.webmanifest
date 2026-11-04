@@ -1,0 +1,10 @@
+{
+  "name": "MyCloud Fusion",
+  "short_name": "MyCloud",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#9fc5f5",
+  "theme_color": "#8bbcf4",
+  "description": "A personal unified cloud file dashboard",
+  "icons": []
+}
