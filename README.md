@@ -1,23 +1,18 @@
-# MyCloud Fusion — preview app
+# MyCloud Fusion v2
 
-This is a responsive installable PWA prototype based on the approved light Liquid Glass design.
+A static GitHub Pages dashboard that can connect up to three Google accounts using Google Identity Services and list Google Drive file metadata.
 
-## Run it
-- Unzip the folder.
-- Open `index.html` in a modern browser for a local preview.
-- For PWA installation/offline caching, host it on HTTPS (or run a local development server).
+## Google Cloud setup
+1. In Google Cloud Console, create/select a project and enable **Google Drive API**.
+2. Configure the OAuth consent screen. For a personal app in Testing mode, add each Google account you will use as a test user. Follow Google's current account/age requirements; if you cannot create a Cloud project, ask a parent/guardian to help with setup.
+3. Create an OAuth Client ID of type **Web application**.
+4. Add this Authorized JavaScript origin: `https://ashwajith-s.github.io`
+5. Do not create or place a client secret in this static website. The app uses the browser token flow.
+6. Open MyCloud on your phone, choose **Set up Google connection**, and paste the Web Client ID.
 
-## Current features
-- Responsive curved Liquid Glass dashboard.
-- Home, Files, Search and Profile navigation.
-- Connected-account dashboard layout and storage summary.
-- Setup dialog for an OAuth client ID (saved locally in this browser).
-- PWA manifest and basic service worker.
-
-## Important: what is not connected yet
-This is a front-end prototype. It does **not** yet sign in to Google, read Drive files, upload or download cloud files. The account cards are empty until a real provider integration is implemented. Do not enter your Google password into this app.
-
-To enable real Google Drive access, the next development step is to configure a Google Cloud project, OAuth consent screen and Drive API with the minimum required scopes, then implement Google's official OAuth flow and Drive API calls. Each account must authorize separately. Keep tokens secure and follow Google's API policies; this app is designed as a unified file manager, not to evade storage quotas.
-
-## Cost
-The app source is free. Hosting may have free options, but no provider can guarantee free hosting forever. Avoid enabling paid billing unless you explicitly choose it.
+## Permissions and limitations
+- Requests `openid email profile` and `https://www.googleapis.com/auth/drive.metadata.readonly`.
+- Lists file names, MIME types, modified dates and Drive web links. It does not download file contents, upload, edit, or delete files.
+- OAuth access tokens are held in JavaScript memory only, not localStorage or GitHub. Closing/reloading the page clears connected sessions; reconnect to use it again.
+- Up to three distinct Google accounts can be connected in one browser session. Google account quotas remain separate.
+- GitHub Pages is public static hosting. Never commit private files, OAuth tokens, passwords, or client secrets.

@@ -1,121 +1,33 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#8bbcf4">
-<meta name="description" content="MyCloud Fusion — one clean place for your cloud files.">
-<link rel="manifest" href="manifest.webmanifest">
-<title>MyCloud Fusion</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#edf4ff"><meta name="description" content="MyCloud Fusion — a personal dashboard for up to three Google Drive accounts"><link rel="manifest" href="manifest.webmanifest"><title>MyCloud Fusion</title>
 <style>
-:root{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#14264b;background:#8dbcf0;font-synthesis:none}
-*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 14% 18%,#e7efff 0,transparent 34%),radial-gradient(ellipse at 85% 28%,#4386d0 0,transparent 42%),linear-gradient(145deg,#c8dcfa,#7faee8 55%,#d9e6ff);background-attachment:fixed}
-button,input{font:inherit}button{cursor:pointer}
-.app{width:min(100%,560px);min-height:100vh;margin:auto;padding:env(safe-area-inset-top) 20px calc(104px + env(safe-area-inset-bottom));position:relative;overflow:hidden}
-.app:before{content:"";position:fixed;width:420px;height:600px;border:1px solid #ffffff88;border-radius:48% 52% 58% 42%;right:-240px;top:110px;transform:rotate(-26deg);pointer-events:none;box-shadow:inset 0 0 40px #fff5}
-.status{height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 10px;font-size:14px;font-weight:650;color:#11264d}
-.header{display:flex;justify-content:space-between;align-items:flex-start;padding:28px 6px 8px;position:relative}
-h1{font-size:36px;line-height:1.02;letter-spacing:-1.7px;margin:0;font-weight:750;color:#101f43}h1 span{display:block;color:#5a6e9c;font-weight:650}
-.tagline{margin:13px 0 0;color:#455d8c;font-size:15px}
-.glass{background:linear-gradient(135deg,#ffffff9c,#ffffff48);border:1px solid #ffffffc9;box-shadow:0 14px 35px #345c9630,inset 0 1px 0 #ffffffdd,inset 0 -1px 0 #ffffff55;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-radius:30px}
-.iconbtn{width:48px;height:48px;border-radius:50%;border:1px solid #ffffffc9;background:#ffffff65;color:#1d3767;box-shadow:0 8px 20px #315b9630,inset 0 1px 0 #fff;display:grid;place-items:center}
-.cloud-art{height:168px;display:grid;place-items:center;margin:0 0 4px;position:relative}
-.cloud{width:170px;height:95px;border-radius:60px;background:linear-gradient(145deg,#ffffffb9,#78b8f5a8);border:2px solid #ffffffd9;box-shadow:inset 0 5px 15px #fff9,0 15px 35px #3489df50,0 0 22px #91d9ff99;position:relative}
-.cloud:before,.cloud:after{content:"";position:absolute;background:inherit;border:inherit;border-bottom:0;border-radius:50% 50% 0 0}
-.cloud:before{width:82px;height:76px;left:30px;top:-46px}.cloud:after{width:70px;height:65px;right:20px;top:-30px}
-.summary{padding:23px 22px 18px;margin:0 0 20px;position:relative}
-.summarytop{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.summaryleft{display:flex;align-items:center;gap:14px}.stackicon{width:54px;height:54px;border-radius:20px;background:#ffffff83;border:1px solid #fff;display:grid;place-items:center;font-size:25px;box-shadow:0 6px 18px #4879ba24}
-.big{font-size:23px;font-weight:700;letter-spacing:-.5px}.muted{color:#50658f;margin-top:4px;font-size:14px}
-.total{text-align:right}.total strong{font-size:24px}.total small{display:block;color:#50658f;margin-top:4px;font-size:13px}
-.progress{height:11px;border-radius:20px;background:#ffffff9c;border:1px solid #ffffffbd;overflow:hidden;margin:18px 0 9px;display:flex}
-.seg{height:100%;border-radius:20px}.blue{background:linear-gradient(90deg,#2796fa,#4dbeff)}.purple{background:linear-gradient(90deg,#9a5cff,#c18cff)}.green{background:linear-gradient(90deg,#14c79b,#65e6c0)}
-.usage{text-align:center;color:#304b7b;font-size:13px}
-.sectionhead{display:flex;align-items:center;justify-content:space-between;margin:24px 5px 12px}
-.sectionhead h2{font-size:18px;margin:0;letter-spacing:-.4px}.textbtn{border:0;background:transparent;color:#244c8c;font-weight:650;font-size:13px}
-.account{padding:13px 15px;display:flex;align-items:center;gap:13px;margin-bottom:12px;border-radius:25px;min-height:78px}
-.google{width:44px;height:44px;flex:none;border-radius:16px;background:#ffffffd9;display:grid;place-items:center;font-size:27px;font-weight:800;color:#4285f4;box-shadow:0 4px 12px #436c9b22}
-.accountinfo{flex:1;min-width:0}.accountname{font-size:15px;font-weight:650;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.accountusage{font-size:13px;color:#526891;margin-top:4px}.mini-progress{height:4px;background:#ffffff9c;border-radius:8px;margin-top:7px;overflow:hidden;max-width:180px}.mini-progress span{display:block;height:100%;border-radius:8px}
-.connected{font-size:11px;color:#087b64;background:#b5f4df88;border:1px solid #ffffff9a;padding:7px 9px;border-radius:18px;white-space:nowrap}
-.merge{padding:18px;display:flex;align-items:center;gap:15px;margin-top:22px}.folder{width:58px;height:50px;border-radius:12px;background:linear-gradient(145deg,#9bd3ff,#397ee0);border:1px solid #fff;box-shadow:inset 0 2px 6px #fff9,0 8px 18px #357bd755;display:grid;place-items:center;color:white;font-size:25px;flex:none}.mergecopy{flex:1}.mergecopy strong{font-size:17px}.mergecopy p{font-size:13px;color:#526891;margin:5px 0 0;line-height:1.35}
-.actions{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.action{padding:13px 4px 11px;border:1px solid #ffffffc9;background:#ffffff66;border-radius:22px;box-shadow:0 8px 18px #315b9622,inset 0 1px 0 #fff;color:#1c3d72;font-size:12px}.action .sym{font-size:22px;display:block;margin-bottom:7px}
-.nav{position:fixed;z-index:5;bottom:max(14px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:min(calc(100% - 34px),520px);padding:9px;display:grid;grid-template-columns:repeat(4,1fr);border-radius:28px;background:#ffffff82;border:1px solid #ffffffd9;backdrop-filter:blur(25px);box-shadow:0 12px 35px #345c963d,inset 0 1px 0 #fff}
-.nav button{border:0;background:transparent;color:#4c6390;padding:8px 2px;border-radius:20px;font-size:11px}.nav button.active{background:linear-gradient(145deg,#ffffffc9,#b9d7ffad);color:#146be0;box-shadow:0 4px 14px #397bd733}.nav .sym{display:block;font-size:20px;margin-bottom:4px}
-.view{display:none}.view.active{display:block}.empty{padding:25px;text-align:center;color:#4d638c}.searchbox{width:100%;border:1px solid #fff;background:#ffffff8a;border-radius:20px;padding:15px 17px;color:#14264b;outline:none;margin:5px 0 15px}.fileitem{display:flex;align-items:center;gap:12px;padding:15px;margin-bottom:10px}.fileicon{font-size:24px}.filemeta{flex:1}.filemeta strong{font-size:14px}.filemeta small{display:block;color:#5b6f96;margin-top:4px}
-.primary{border:1px solid #ffffffd9;border-radius:20px;padding:13px 18px;color:#fff;font-weight:700;background:linear-gradient(120deg,#397fe7,#8b7cf2);box-shadow:0 8px 20px #497de955}
-.modalback{position:fixed;inset:0;background:#13284b66;z-index:10;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px)}.modalback.show{display:flex}.modal{width:min(100%,390px);padding:24px;border-radius:28px;background:linear-gradient(145deg,#edf5ffef,#c9def8ef);border:1px solid #fff;box-shadow:0 20px 60px #18365c55}.modal h3{margin:0 0 9px}.modal p{color:#536990;font-size:14px;line-height:1.5}.modal input{width:100%;padding:12px;border:1px solid #fff;border-radius:14px;background:#ffffffa8;margin:7px 0 12px}.modalactions{display:flex;justify-content:flex-end;gap:10px;margin-top:15px}.ghost{border:0;background:transparent;color:#36527f;padding:12px}
-@media(min-width:600px){.app{padding-top:10px}.cloud-art{height:190px}}
+:root{color-scheme:light;--ink:#17233b;--muted:#71809a;--line:rgba(255,255,255,.8);--glass:rgba(255,255,255,.66);--blue:#477cf5;--shadow:0 18px 55px rgba(74,104,159,.13)}*{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:radial-gradient(ellipse at 10% 0%,#fff 0,transparent 38%),radial-gradient(ellipse at 95% 15%,#dceaff 0,transparent 38%),linear-gradient(145deg,#edf4ff,#f6f3ff 55%,#e9f5ff);background-attachment:fixed}.wrap{max-width:1000px;margin:auto;padding:26px 18px 110px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0 28px}.brand{display:flex;align-items:center;gap:12px}.logo{width:46px;height:46px;border-radius:17px;background:linear-gradient(145deg,rgba(255,255,255,.95),rgba(198,218,255,.8));box-shadow:inset 0 1px 0 white,0 8px 24px #7399d52e;display:grid;place-items:center;color:#477cf5;font-size:23px}.brand h1{font-size:20px;letter-spacing:-.7px;margin:0}.brand p{font-size:12px;color:var(--muted);margin:3px 0 0}.pill{border:1px solid #fff;background:#ffffff91;border-radius:999px;padding:9px 13px;color:#62718d;font-size:12px;box-shadow:0 5px 20px #728db21a}.hero{padding:26px;border:1px solid var(--line);border-radius:30px;background:linear-gradient(135deg,#ffffffc9,#ffffff73);box-shadow:var(--shadow);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);position:relative;overflow:hidden}.hero:after{content:"";position:absolute;width:230px;height:230px;right:-75px;top:-100px;border-radius:50%;background:radial-gradient(circle,#a9c7ff66,transparent 70%);pointer-events:none}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:#7188b4;font-weight:750}.hero h2{font-size:clamp(25px,5vw,38px);line-height:1.1;letter-spacing:-1.6px;margin:12px 0 9px;max-width:580px}.hero p{color:var(--muted);font-size:14px;line-height:1.6;max-width:540px;margin:0}.stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.stat{padding:10px 14px;border-radius:16px;background:#ffffff9c;border:1px solid #fff;font-size:12px;color:#63728d}.stat b{font-size:17px;color:var(--ink);margin-right:5px}.section-head{display:flex;align-items:center;justify-content:space-between;margin:28px 3px 14px}.section-head h3{font-size:17px;margin:0;letter-spacing:-.4px}.section-head span{font-size:12px;color:var(--muted)}.accounts{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:14px}.account{min-height:178px;border:1px solid #ffffffd9;border-radius:25px;padding:18px;background:#ffffff9b;box-shadow:0 12px 34px #5f83b01a;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}.account-top{display:flex;align-items:center;justify-content:space-between}.gicon{width:38px;height:38px;border-radius:14px;background:#fff;display:grid;place-items:center;font-weight:800;color:#4285f4;box-shadow:0 4px 15px #536e9820}.status{font-size:11px;color:#8290a6;background:#f1f4f9;padding:6px 9px;border-radius:99px}.account h4{font-size:14px;margin:14px 0 4px;overflow-wrap:anywhere}.account p{font-size:12px;color:var(--muted);margin:0}.actions{display:flex;gap:8px;margin-top:17px}.btn{border:0;border-radius:14px;padding:11px 15px;font-size:13px;font-weight:650;cursor:pointer;transition:.18s}.btn:active{transform:scale(.98)}.primary{color:white;background:linear-gradient(135deg,#5688fa,#7a75ed);box-shadow:0 8px 18px #6487ed38}.soft{background:#eef3ff;color:#5273bd}.danger{background:#fff0f0;color:#c05b65}.btn:disabled{opacity:.45;cursor:not-allowed}.files{margin-top:15px;border:1px solid #ffffffd9;border-radius:25px;background:#ffffffa1;box-shadow:0 12px 34px #5f83b01a;overflow:hidden}.files-head{padding:17px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:1px solid #e8eef8}.files-head h3{font-size:15px;margin:0}.file-list{padding:5px 16px}.file-row{display:flex;align-items:center;gap:12px;padding:13px 2px;border-bottom:1px solid #edf1f8}.file-row:last-child{border:0}.file-icon{width:36px;height:36px;border-radius:12px;background:#edf3ff;display:grid;place-items:center;font-size:17px}.file-meta{min-width:0;flex:1}.file-meta b{display:block;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.file-meta small{font-size:11px;color:var(--muted)}.empty{padding:28px 18px;text-align:center;color:var(--muted);font-size:13px;line-height:1.6}.notice{margin-top:18px;padding:15px 17px;border:1px solid #dce7fb;border-radius:18px;background:#ffffff88;color:#687995;font-size:12px;line-height:1.6}.notice b{color:#435a82}.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#17233beF;color:white;border-radius:14px;padding:12px 17px;font-size:13px;box-shadow:0 10px 30px #18264240;z-index:5;max-width:90vw}.hidden{display:none!important}.footer{text-align:center;color:#8996aa;font-size:11px;margin-top:26px}@media(max-width:520px){.wrap{padding:17px 13px 90px}.hero{padding:21px;border-radius:25px}.top{margin-bottom:20px}.pill{font-size:11px}.section-head{margin-top:24px}}
 </style>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
-<body>
-<main class="app">
-  <div class="status"><span>9:41</span><span>● ▮▮  Wi-Fi　100%</span></div>
-  <section class="view active" id="home">
-    <header class="header"><div><h1>MyCloud <span>Fusion</span></h1><p class="tagline">All your clouds. One place.</p></div><button class="iconbtn" id="settings" aria-label="Settings">⚙</button></header>
-    <div class="cloud-art"><div class="cloud"></div></div>
-    <section class="glass summary">
-      <div class="summarytop"><div class="summaryleft"><div class="stackicon">▱</div><div><div class="big" id="accountCount">0 Accounts</div><div class="muted">Connected accounts</div></div></div><div class="total"><strong id="totalLabel">—</strong><small>Reported storage</small></div></div>
-      <div class="progress" id="overallProgress"></div><div class="usage" id="usageLabel">Connect an account to begin</div>
-    </section>
-    <div class="sectionhead"><h2>Connected accounts</h2><button class="textbtn" id="addAccount">＋ Add account</button></div>
-    <div id="accounts"></div>
-    <div class="glass merge" id="browseMerged" role="button" tabindex="0"><div class="folder">▰</div><div class="mergecopy"><strong>Merged File View</strong><p>Browse and search files from your connected accounts together.</p></div><span>›</span></div>
-    <div class="sectionhead"><h2>Quick Actions</h2><button class="textbtn" id="seeFiles">See files　›</button></div>
-    <div class="actions">
-      <button class="action" id="uploadBtn"><span class="sym">⇧</span>Upload</button>
-      <button class="action" id="searchBtn"><span class="sym">⌕</span>Search</button>
-      <button class="action" id="browseBtn"><span class="sym">▱</span>Browse</button>
-      <button class="action" id="downloadBtn"><span class="sym">⇩</span>Downloads</button>
-    </div>
-  </section>
-  <section class="view" id="files">
-    <header class="header"><div><h1>My Files</h1><p class="tagline">Files from your connected accounts.</p></div></header>
-    <input class="searchbox" id="fileSearch" placeholder="⌕  Search files..." aria-label="Search files">
-    <div id="fileList"></div>
-    <div class="empty" id="noFiles">No files yet. Connect Google Drive to see your files here.</div>
-  </section>
-  <section class="view" id="search">
-    <header class="header"><div><h1>Search</h1><p class="tagline">Find files across your connected accounts.</p></div></header>
-    <input class="searchbox" id="globalSearch" placeholder="⌕  Search your files..." aria-label="Search all files">
-    <div class="empty">Search becomes available when a cloud provider is connected.</div>
-  </section>
-  <section class="view" id="profile">
-    <header class="header"><div><h1>Profile</h1><p class="tagline">Your private cloud workspace.</p></div></header>
-    <div class="glass" style="padding:20px;margin-top:20px"><strong>MyCloud Fusion</strong><p class="muted">Personal file dashboard · Preview build</p><p class="muted">Your files stay in their original cloud accounts. This app displays a unified view; it does not combine storage quotas.</p><button class="primary" id="connectProfile">Connect Google Drive</button></div>
-  </section>
-</main>
-<nav class="nav" aria-label="Main navigation">
-  <button class="active" data-view="home"><span class="sym">⌂</span>Home</button><button data-view="files"><span class="sym">▱</span>Files</button><button data-view="search"><span class="sym">⌕</span>Search</button><button data-view="profile"><span class="sym">◯</span>Profile</button>
-</nav>
-<div class="modalback" id="modal">
- <div class="modal"><h3 id="modalTitle">Connect Google Drive</h3><p id="modalText">This preview has the dashboard ready. Real Google sign-in needs your own Google Cloud OAuth client ID and secure setup. No password should be entered into this demo.</p><label for="clientId" style="font-size:13px;font-weight:650">Optional OAuth client ID</label><input id="clientId" placeholder="Paste your Google OAuth client ID"><div class="modalactions"><button class="ghost" id="closeModal">Close</button><button class="primary" id="saveClient">Save setup</button></div></div>
-</div>
+<body><main class="wrap">
+<header class="top"><div class="brand"><div class="logo">✧</div><div><h1>MyCloud Fusion</h1><p>Your clouds, one calm space</p></div></div><div class="pill">PERSONAL CLOUD</div></header>
+<section class="hero"><div class="eyebrow">Your storage space</div><h2>Everything in one<br>beautiful place.</h2><p>Connect up to three Google Drive accounts and browse their files from one simple dashboard.</p><div class="stats"><div class="stat"><b id="connectedCount">0</b>/3 accounts connected</div><div class="stat"><b id="fileCount">0</b> files loaded</div></div></section>
+<div class="section-head"><h3>Connected accounts</h3><span>Maximum 3 accounts</span></div><section class="accounts" id="accounts"></section>
+<section class="files"><div class="files-head"><h3 id="filesTitle">Your files</h3><button class="btn soft" id="refreshBtn" disabled>Refresh</button></div><div class="file-list" id="fileList"><div class="empty">Connect a Google Drive account to see its files here.</div></div></section>
+<div class="notice"><b>Privacy & permissions</b><br>MyCloud requests permission to view Drive file names and basic details only. It does not upload, edit, or delete your files. Access tokens stay in this browser session and are not saved in the repository. Disconnecting or closing the browser clears the session.</div>
+<div class="footer">MyCloud Fusion · Personal project · Google Drive access is provided by Google</div>
+</main><div id="toast" class="toast hidden"></div>
 <script>
-const $=id=>document.getElementById(id);
-const demoAccounts=[];
-function render(){
- $('accountCount').textContent=demoAccounts.length+' Account'+(demoAccounts.length===1?'':'s');
- const total=demoAccounts.reduce((s,a)=>s+a.total,0),used=demoAccounts.reduce((s,a)=>s+a.used,0);
- $('totalLabel').textContent=total?total.toFixed(1)+' GB':'—';
- $('usageLabel').textContent=total?used.toFixed(1)+' GB used · '+(total-used).toFixed(1)+' GB remaining':'Connect an account to begin';
- $('overallProgress').innerHTML=demoAccounts.map(a=>`<span class="seg ${a.color}" style="width:${total?a.total/total*100:0}%"></span>`).join('');
- $('accounts').innerHTML=demoAccounts.length?demoAccounts.map((a,i)=>`<div class="glass account"><div class="google">G</div><div class="accountinfo"><div class="accountname">${escapeHtml(a.name)}</div><div class="accountusage">${a.used.toFixed(1)} / ${a.total.toFixed(1)} GB reported</div><div class="mini-progress"><span class="${a.color}" style="width:${Math.min(100,a.used/a.total*100)}%"></span></div></div><span class="connected">● Connected</span></div>`).join(''):'<div class="glass empty">No accounts connected yet.<br>Use “Add account” to set up Google sign-in.</div>';
-}
-function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-function modal(){ $('modal').classList.add('show'); }
-function close(){ $('modal').classList.remove('show'); }
-function go(view){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===view));document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===view));}
-document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>go(b.dataset.view)));
-['addAccount','settings','connectProfile'].forEach(id=>$(id).addEventListener('click',modal));
-$('closeModal').onclick=close;$('modal').addEventListener('click',e=>{if(e.target===$('modal'))close()});
-$('saveClient').onclick=()=>{const v=$('clientId').value.trim();if(v){localStorage.setItem('mycloud_oauth_client_id',v);$('modalText').textContent='Client ID saved in this browser. OAuth is not activated in this preview; the real Google authorization flow still needs to be configured.';}else{$('modalText').textContent='No client ID entered. You can add it later. Never enter your Google password here.';}};
-$('browseMerged').onclick=$('browseMerged').onkeydown=e=>{if(e.type==='click'||e.key==='Enter')go('files')};
-$('seeFiles').onclick=$('browseBtn').onclick=()=>go('files');$('searchBtn').onclick=()=>go('search');
-$('uploadBtn').onclick=()=>alert('Uploads will be enabled after secure Google Drive authorization is configured.');
-$('downloadBtn').onclick=()=>go('files');
-$('fileSearch').addEventListener('input',()=>{const q=$('fileSearch').value.toLowerCase();$('fileList').querySelectorAll('.fileitem').forEach(x=>x.style.display=x.dataset.name.includes(q)?'flex':'none')});
-$('globalSearch').addEventListener('input',()=>{ $('fileSearch').value=$('globalSearch').value;go('files');$('fileSearch').dispatchEvent(new Event('input'));});
-render();
-if('serviceWorker' in navigator) window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
-</script>
-</body></html>
+const MAX=3, accounts=[null,null,null];let tokenClient=null,activeSlot=0,allFiles=[];const CLIENT_ID_KEY='mycloud_google_client_id';
+const $=id=>document.getElementById(id);function toast(msg){const t=$('toast');t.textContent=msg;t.classList.remove('hidden');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.add('hidden'),3500)}
+function loadClientId(){return localStorage.getItem(CLIENT_ID_KEY)||''}
+function saveClientId(){const v=prompt('Paste your Google OAuth Web Client ID. It ends with .apps.googleusercontent.com');if(v===null)return;if(!v.trim().endsWith('.apps.googleusercontent.com')){toast('That does not look like a Google Web Client ID.');return}localStorage.setItem(CLIENT_ID_KEY,v.trim());toast('Client ID saved on this device.');render()}
+function render(){const host=$('accounts');host.innerHTML='';accounts.forEach((a,i)=>{const card=document.createElement('article');card.className='account';const top=document.createElement('div');top.className='account-top';top.innerHTML='<div class="gicon">G</div><span class="status">'+(a?'Connected':'Not connected')+'</span>';card.append(top);const h=document.createElement('h4');h.textContent=a?a.email:'Google Drive '+(i+1);card.append(h);const p=document.createElement('p');p.textContent=a?(a.files.length+' files loaded'):'Connect a Google account to browse files';card.append(p);const actions=document.createElement('div');actions.className='actions';if(a){const view=document.createElement('button');view.className='btn soft';view.textContent='View files';view.onclick=()=>showFiles(i);actions.append(view);const dis=document.createElement('button');dis.className='btn danger';dis.textContent='Disconnect';dis.onclick=()=>disconnect(i);actions.append(dis)}else{const connect=document.createElement('button');connect.className='btn primary';connect.textContent='Connect Google Drive';connect.disabled=!loadClientId();connect.onclick=()=>connectAccount(i);actions.append(connect)}card.append(actions);host.append(card)});$('connectedCount').textContent=accounts.filter(Boolean).length;$('fileCount').textContent=accounts.reduce((n,x)=>n+(x?.files.length||0),0);if(!loadClientId()){$('filesTitle').textContent='Setup required';$('fileList').innerHTML='<div class="empty">First add your Google OAuth Client ID on this device.<br><br><button class="btn primary" onclick="saveClientId()">Set up Google connection</button></div>'}}
+function initTokenClient(slot){if(!window.google?.accounts?.oauth2)throw new Error('Google sign-in is still loading. Wait a few seconds and try again.');const clientId=loadClientId();if(!clientId)throw new Error('Add your Google Client ID first.');tokenClient=google.accounts.oauth2.initTokenClient({client_id:clientId,scope:'openid email profile https://www.googleapis.com/auth/drive.metadata.readonly',include_granted_scopes:true,callback:async response=>{if(response.error){toast('Google connection failed: '+response.error);return}try{const token=response.access_token;const me=await fetch('https://www.googleapis.com/oauth2/v3/userinfo',{headers:{Authorization:'Bearer '+token}});if(!me.ok)throw new Error('Could not read Google account profile.');const profile=await me.json();if(accounts.some((a,j)=>j!==slot&&a?.email===profile.email))throw new Error('This Google account is already connected.');const entry={email:profile.email,name:profile.name||profile.email,token,files:[],expiresAt:Date.now()+(response.expires_in||3600)*1000};accounts[slot]=entry;toast('Connected '+profile.email);render();await fetchFiles(slot)}catch(e){toast(e.message||'Could not finish connecting.')}}});tokenClient.requestAccessToken({prompt:'select_account'});}
+function connectAccount(slot){activeSlot=slot;try{initTokenClient(slot)}catch(e){toast(e.message)}}
+async function api(url,token,options={}){const r=await fetch(url,{...options,headers:{Authorization:'Bearer '+token,...(options.headers||{})}});if(r.status===401)throw new Error('Google access expired. Disconnect and reconnect this account.');if(!r.ok){let m='Google Drive request failed ('+r.status+').';try{const j=await r.json();m=j.error?.message||m}catch{}throw new Error(m)}return r.json()}
+async function fetchFiles(slot){const a=accounts[slot];if(!a)return;try{const q=encodeURIComponent("trashed = false");const data=await api('https://www.googleapis.com/drive/v3/files?pageSize=100&orderBy=folder,name&fields=files(id,name,mimeType,modifiedTime,size,webViewLink),nextPageToken&q='+q,a.token);a.files=data.files||[];a.nextPageToken=data.nextPageToken||null;showFiles(slot);render()}catch(e){toast(e.message)}}
+function showFiles(slot){const a=accounts[slot];if(!a)return;activeSlot=slot;$('filesTitle').textContent='Files · '+a.email;$('fileCount').textContent=accounts.reduce((n,x)=>n+(x?.files.length||0),0);const list=$('fileList');list.innerHTML='';if(!a.files.length){list.innerHTML='<div class="empty">No files were returned for this account.</div>';return}a.files.forEach(f=>{const row=document.createElement('div');row.className='file-row';const ic=document.createElement('div');ic.className='file-icon';ic.textContent=f.mimeType==='application/vnd.google-apps.folder'?'📁':f.mimeType?.includes('image')?'🖼️':f.mimeType?.includes('pdf')?'📄':'📃';const meta=document.createElement('div');meta.className='file-meta';const b=document.createElement('b');b.textContent=f.name;const sm=document.createElement('small');sm.textContent=f.mimeType==='application/vnd.google-apps.folder'?'Google Drive folder':(f.modifiedTime?'Modified '+new Date(f.modifiedTime).toLocaleDateString():'Google Drive file');meta.append(b,sm);row.append(ic,meta);if(f.webViewLink){const open=document.createElement('a');open.href=f.webViewLink;open.target='_blank';open.rel='noopener';open.textContent='Open';open.style.cssText='font-size:12px;color:#5278d4;text-decoration:none';row.append(open)}list.append(row)});if(a.nextPageToken){const more=document.createElement('button');more.className='btn soft';more.style.margin='12px';more.textContent='Load more';more.onclick=()=>loadMore(slot);list.append(more)}}
+async function loadMore(slot){const a=accounts[slot];if(!a?.nextPageToken)return;try{const q=encodeURIComponent("trashed = false");const url='https://www.googleapis.com/drive/v3/files?pageSize=100&orderBy=folder,name&fields=files(id,name,mimeType,modifiedTime,size,webViewLink),nextPageToken&q='+q+'&pageToken='+encodeURIComponent(a.nextPageToken);const data=await api(url,a.token);a.files.push(...(data.files||[]));a.nextPageToken=data.nextPageToken||null;showFiles(slot);render()}catch(e){toast(e.message)}}
+function disconnect(slot){accounts[slot]=null;allFiles=[];$('filesTitle').textContent='Your files';$('fileList').innerHTML='<div class="empty">Account disconnected. Connect an account to browse files.</div>';render();toast('Account disconnected from this browser session.')}
+$('refreshBtn').onclick=()=>fetchFiles(activeSlot);$('refreshBtn').disabled=false;render();
+if('serviceWorker'in navigator&&location.protocol.startsWith('http'))window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+</script></body></html>
